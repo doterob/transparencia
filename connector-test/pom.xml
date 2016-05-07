@@ -11,10 +11,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>transparencia-connector-test</artifactId>
+    <packaging>pom</packaging>
 
     <modules>
         <module>../connector-scq</module>
-        <module>../model</module>
     </modules>
 
 </project>

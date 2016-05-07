@@ -11,11 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>transparencia-connector-scq</artifactId>
-    <packaging>jar</packaging>
-
-    <modules>
-        <module>../model</module>
-    </modules>
+    <packaging>pom</packaging>
 
     <dependencies>
         <dependency>
@@ -38,11 +34,9 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.pdfbox</groupId>
-            <artifactId>pdfbox</artifactId>
-            <version>1.8.5</version>
-        </dependency>
     </dependencies>
 
+    <modules>
+    	<module>../model</module>
+    </modules>
 </project>

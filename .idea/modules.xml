@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/connector-scq/connector-scq.iml" filepath="$PROJECT_DIR$/connector-scq/connector-scq.iml" />
-      <module fileurl="file://$PROJECT_DIR$/connector-test/connector-test.iml" filepath="$PROJECT_DIR$/connector-test/connector-test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/model/model.iml" filepath="$PROJECT_DIR$/model/model.iml" />
       <module fileurl="file://$PROJECT_DIR$/transparencia-connector.iml" filepath="$PROJECT_DIR$/transparencia-connector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/model/transparencia-connector-model.iml" filepath="$PROJECT_DIR$/model/transparencia-connector-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/connector-scq/transparencia-connector-scq.iml" filepath="$PROJECT_DIR$/connector-scq/transparencia-connector-scq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/connector-test/transparencia-connector-test.iml" filepath="$PROJECT_DIR$/connector-test/transparencia-connector-test.iml" />
     </modules>
   </component>
 </project>

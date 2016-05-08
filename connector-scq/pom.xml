@@ -11,7 +11,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>transparencia-connector-scq</artifactId>
-    <packaging>pom</packaging>
 
     <dependencies>
         <dependency>
@@ -36,7 +35,4 @@
         </dependency>
     </dependencies>
 
-    <modules>
-    	<module>../model</module>
-    </modules>
 </project>

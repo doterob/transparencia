@@ -10,11 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>transparencia-elasticsearch</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>../model</module>
-    </modules>
 
     <dependencies>
         <dependency>

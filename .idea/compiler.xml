@@ -19,6 +19,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="connector-scq" target="1.7" />
+      <module name="elasticsearch" target="1.7" />
+      <module name="model" target="1.7" />
       <module name="transparencia-connector" target="1.7" />
       <module name="transparencia-connector-model" target="1.7" />
       <module name="transparencia-connector-scq" target="1.7" />

@@ -2,6 +2,8 @@ package com.doterob.transparencia.model;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.List;
+
 /**
  * Created by dotero on 07/05/2016.
  */

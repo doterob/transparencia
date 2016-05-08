@@ -9,8 +9,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="transparencia-connector-model" />
-    <orderEntry type="module" module-name="transparencia-connector-scq" />
-    <orderEntry type="module" module-name="transparencia-connector-test" />
+    <orderEntry type="module" module-name="connector-test" />
   </component>
 </module>

@@ -13,24 +13,14 @@ import org.apache.pdfbox.io.RandomAccessFile;
 import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
 
 public class PDFBoxManager implements PDFManager {
 
-	private final String url;
+	private final PDDocument document;
 
-	public PDFBoxManager(String url) {
-		this.url = url;
-
-	}
-
-    public String toText() throws IOException, URISyntaxException {
-        return null;
-    }
-
-    public List<Contract> extract() throws IOException, URISyntaxException {
-
-		final Map<String, Contract> result = new TreeMap<String, Contract>();
+	public PDFBoxManager(String url) throws IOException {
 
 		final File file = File.createTempFile("aux",".pdf");
 		FileUtils.copyURLToFile(new URL(url), file);
@@ -38,7 +28,17 @@ public class PDFBoxManager implements PDFManager {
 		final PDFParser parser = new PDFParser(new RandomAccessFile(file, "r"));
 		parser.parse();
 
-		final PDDocument document = new PDDocument(parser.getDocument());
+		document = new PDDocument(parser.getDocument());
+	}
+
+    public String toText() throws IOException, URISyntaxException {
+
+		return new PDFTextStripper().getText(document);
+    }
+
+    public List<Contract> extract() throws IOException, URISyntaxException {
+
+		final Map<String, Contract> result = new TreeMap<String, Contract>();
 
 		for(int phase : ScqPDFRowConstants.PHASES) {
 			result.putAll(explorePhase(document, phase));
@@ -57,9 +57,8 @@ public class PDFBoxManager implements PDFManager {
 		final ScqPDFPage pageRegion = ScqPDFPage.get(phase);
 		pageRegion.addRegions(stripper);
 
-		for(int p = 0; p< document.getDocumentCatalog().getPages().getCount();p++){
-			final PDPage pdPage = document.getDocumentCatalog().getPages().get(p);
-			stripper.extractRegions(pdPage);
+		for(PDPage page : document.getDocumentCatalog().getPages()){
+			stripper.extractRegions(page);
 			result.putAll(pageRegion.extractContracts(stripper));
 		}
 

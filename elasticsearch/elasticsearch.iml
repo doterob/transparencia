@@ -46,11 +46,20 @@
     <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk-elasticsearch:1.10.76" level="project" />
     <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk-core:1.10.76" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.1.3" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.3.6" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.3.3" level="project" />
-    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.6" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.5.3" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.5.0" level="project" />
+    <orderEntry type="library" name="Maven: io.searchbox:jest:2.0.0" level="project" />
+    <orderEntry type="library" name="Maven: io.searchbox:jest-common:2.0.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore-nio:4.4.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.1" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.9" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpasyncclient:4.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.13" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-log4j12:1.6.1" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.16" level="project" />
     <orderEntry type="module" module-name="model" />
   </component>
 </module>

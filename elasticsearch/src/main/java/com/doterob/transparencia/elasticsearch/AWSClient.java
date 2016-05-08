@@ -6,13 +6,8 @@ import com.amazonaws.services.elasticsearch.AWSElasticsearchClient;
 import com.amazonaws.services.elasticsearch.model.AddTagsRequest;
 import com.amazonaws.services.elasticsearch.model.Tag;
 import com.doterob.transparencia.model.Contract;
-import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.client.Client;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import com.doterob.transparencia.model.Publishing;
 
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,20 +22,20 @@ public class AWSClient implements com.doterob.transparencia.elasticsearch.Client
     private AWSClient(){
         client = new AWSElasticsearchClient();
         client.setRegion(Region.getRegion(Regions.EU_CENTRAL_1));
-        client.setEndpoint("es.eu-central-1.amazon.aws.com");
+        client.setEndpoint("search-transparencia-3kwgan64yqnamybgoc5xip3wce.eu-central-1.es.amazonaws.com");
     }
 
-    public void index(final List<Contract> contracts) throws UnknownHostException{
+    public void indexContracts(String index, List<Publishing> publishings) throws UnknownHostException{
 
         final List<Tag> tags = new ArrayList<>();
 
         final AddTagsRequest request = new AddTagsRequest();
-        request.withTagList(convertAll(contracts));
+        request.withTagList(convertAll(publishings));
 
         client.addTags(request);
     }
 
-    private List<Tag> convertAll(List<Contract> contracts){
+    private List<Tag> convertAll(List<? extends  Contract> contracts){
         final List<Tag> result = new ArrayList<>();
         for(Contract c : contracts){
             result.addAll(convert(c));
@@ -53,9 +48,9 @@ public class AWSClient implements com.doterob.transparencia.elasticsearch.Client
         result.add(tag("id", contract.getId()));
         result.add(tag("date", contract.getDate()));
         result.add(tag("subject", contract.getSubject()));
-        result.add(tag("entityId", contract.getEntityId()));
-        result.add(tag("entityName", contract.getEntityId()));
-        result.add(tag("area", contract.getArea()));
+        result.add(tag("entityId", contract.getContractorId()));
+        result.add(tag("entityName", contract.getContractorId()));
+        result.add(tag("area", contract.getOrganizationArea()));
         result.add(tag("amount", contract.getAmount()));
         return result;
     }

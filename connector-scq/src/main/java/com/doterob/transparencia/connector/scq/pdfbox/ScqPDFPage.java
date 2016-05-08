@@ -57,7 +57,7 @@ public class ScqPDFPage {
 
         for(int i = 0; i < rows.size();i++){
 
-            final Contract contract = rows.get(i).getContact(stripper);
+            final Contract contract = rows.get(i).extractContact(stripper);
             if(contract.isValid()) {
                 result.put(contract.getId(), contract);
             }

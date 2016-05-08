@@ -1,0 +1,15 @@
+{
+  "local" : {
+    "properties" : {
+      "codigo" : {"type" : "string", "store" : "yes"},
+      "importe" : {"type" : "float", "store" : "yes"},
+      "fecha" : 	{"type" : "date", "format":"dd-MM-yyyy", "store" : "yes"},
+      "concepto" : 	{"type" : "string", "store" : "yes", "index":    "not_analyzed"},
+      "cif" : 	{"type" : "string", "store" : "yes"},
+      "contratante" : 	{"type" : "string", "store" : "yes", "index":    "not_analyzed"},
+      "area" : 	{"type" : "string", "store" : "yes","index":    "not_analyzed"},
+      "entidad" : 	{"type" : "string", "store" : "yes", "index":    "not_analyzed"},
+      "fuente" : 	{"type" : "string", "store" : "yes"}
+    }
+  }
+}

@@ -11,6 +11,25 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>transparencia-connector-test</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>transparencia-connector</groupId>
+            <artifactId>transparencia-connector-model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>transparencia-connector</groupId>
+            <artifactId>transparencia-connector-scq</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>transparencia-connector</groupId>
+            <artifactId>transparencia-elasticsearch</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
     
     <build>
         <plugins>

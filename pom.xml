@@ -11,9 +11,27 @@
 
     <modules>
         <module>model</module>
-        <module>connector-scq</module>
-        <module>elasticsearch</module>
+        <module>transparencia-connector-scq</module>
+        <module>transparencia-elasticsearch</module>
         <module>connector-test</module>
     </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                </plugin>
+            </plugins>
+    </build>
 
 </project>

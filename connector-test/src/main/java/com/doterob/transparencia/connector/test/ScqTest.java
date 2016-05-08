@@ -18,20 +18,22 @@ public class ScqTest {
 
 	private static final String INDEX = "contratacion";
 	private static final Organization ORGANIZATION = new Organization("Santiago de Compostela", OrganizationType.local);
-	private static final String URL = "http://www.santiagodecompostela.gal/medi/transparencia/Contratacion_municipal/Contratos_menores/Relacion_de_contratos_menores_2016/C-2016-1.pdf";
+	private static final String URL = "http://www.santiagodecompostela.gal/medi/transparencia/Contratacion_municipal/Contratos_menores/Relacion_de_contratos_menores_2016/C-2016-";
 
 	public static void main(String[] args) throws IOException, URISyntaxException {
 
-		final PDFManager pdfManager = new PDFBoxManager(URL);
+		for (int i = 1; i < 44; i++) {
+			final PDFManager pdfManager = new PDFBoxManager(URL + i + ".pdf");
 
-		final List<Publishing> publishing = new Publishing.Builder()
-				.setOrganization(ORGANIZATION)
-				.setSource(URL)
-				.build(pdfManager.extract());
+			final List<Publishing> publishing = new Publishing.Builder()
+					.setOrganization(ORGANIZATION)
+					.setSource(URL)
+					.build(pdfManager.extract());
 
-		assert publishing.size() > 1;
+			assert publishing.size() > 1;
 
-		final Client es = new JestClient();
-		es.indexContracts(INDEX, publishing);
+			final Client es = new JestClient();
+			es.indexContracts(INDEX, publishing);
+		}
 	}
 }

@@ -1,5 +1,8 @@
 package com.doterob.transparencia.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +11,11 @@ import java.util.List;
  */
 public class Publishing extends Contract {
 
+    @JsonProperty("entidad")
     private final String organizationName;
+    @JsonIgnore
     private final OrganizationType type;
+    @JsonProperty("fuente")
     private final String source;
 
     public Publishing(Organization organization, String source, Contract contract) {

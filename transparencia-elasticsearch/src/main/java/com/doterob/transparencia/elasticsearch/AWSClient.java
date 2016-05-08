@@ -46,12 +46,12 @@ public class AWSClient implements com.doterob.transparencia.elasticsearch.Client
     private List<Tag> convert(Contract contract){
         final List<Tag> result = new ArrayList<Tag>();
         result.add(tag("id", contract.getId()));
-        result.add(tag("date", contract.getDate()));
+        result.add(tag("date", contract.getDate().toString()));
         result.add(tag("subject", contract.getSubject()));
         result.add(tag("entityId", contract.getContractorId()));
         result.add(tag("entityName", contract.getContractorId()));
         result.add(tag("area", contract.getOrganizationArea()));
-        result.add(tag("amount", contract.getAmount()));
+        result.add(tag("amount", contract.getAmount().toString()));
         return result;
     }
 

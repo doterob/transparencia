@@ -1,9 +1,13 @@
 package com.doterob.transparencia.connector.scq.pdfbox;
 
 import com.doterob.transparencia.model.Contract;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
 
 import java.awt.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by dotero on 07/05/2016.
@@ -55,13 +59,22 @@ public class ScqPDFRow {
     }
 
     public Contract extractContact(PDFTextStripperByArea stripper){
+
+        final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = null;
+        Float amount = null;
+        try {
+            date = formatter.parse(stripper.getTextForRegion(row + "-date").replace("\r\n", " ").trim());
+            amount = Float.parseFloat(stripper.getTextForRegion(row+"-amount").replace("\r\n"," ").replace(".","").replace(",",".").trim());
+        } catch (ParseException|NumberFormatException e){}
+
         return new Contract(stripper.getTextForRegion(row+"-id").replace("\r\n"," ").trim(),
-                stripper.getTextForRegion(row+"-date").replace("\r\n"," ").trim(),
+                date,
                 stripper.getTextForRegion(row+"-subject").replace("\r\n"," ").trim(),
                 stripper.getTextForRegion(row+"-contractorId").replace("\r\n"," ").trim(),
                 stripper.getTextForRegion(row+"-contractorName").replace("\r\n"," ").trim(),
                 stripper.getTextForRegion(row+"-organizationArea").replace("\r\n"," ").trim(),
-                stripper.getTextForRegion(row+"-amount").replace("\r\n"," ").trim());
+                amount);
     }
 
     @Override

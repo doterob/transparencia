@@ -1,4 +1,4 @@
-package com.doterob.transparencia.connector.scq.itext;
+package com.doterob.transparencia.connector.extractor.pdf.itext;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.doterob.transparencia.connector.scq.PDFManager;
+import com.doterob.transparencia.connector.extractor.pdf.PDFManager;
 import com.doterob.transparencia.model.Contract;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
@@ -19,7 +19,7 @@ public class ITextManager implements PDFManager {
 		this.url = url;
 	}
 
-	public String toText() throws IOException {
+	public String testToText() throws IOException {
 		StringBuilder result = new StringBuilder();
 		PdfReader reader = new PdfReader(new URL(url));
 		for(int i = 1; i <= reader.getNumberOfPages();i++) {

@@ -1,4 +1,4 @@
-package com.doterob.transparencia.connector.scq.pdfbox;
+package com.doterob.transparencia.connector.extractor.pdf.pdfbox;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,7 +6,9 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
-import com.doterob.transparencia.connector.scq.PDFManager;
+import com.doterob.transparencia.connector.extractor.pdf.PDFManager;
+import com.doterob.transparencia.connector.scq.pdfbox.PDFContractAreaScqBuilder;
+import com.doterob.transparencia.connector.scq.pdfbox.ScqPDFRowConstants;
 import com.doterob.transparencia.model.Contract;
 import org.apache.commons.io.FileUtils;
 import org.apache.pdfbox.io.RandomAccessFile;
@@ -31,7 +33,7 @@ public class PDFBoxManager implements PDFManager {
 		document = new PDDocument(parser.getDocument());
 	}
 
-    public String toText() throws IOException, URISyntaxException {
+    public String testToText() throws IOException, URISyntaxException {
 
 		return new PDFTextStripper().getText(document);
     }
@@ -54,7 +56,7 @@ public class PDFBoxManager implements PDFManager {
 		final PDFTextStripperByArea stripper = new PDFTextStripperByArea();
 		stripper.setSortByPosition(true);
 
-		final ScqPDFPage pageRegion = ScqPDFPage.get(phase);
+		final PDFPage pageRegion = PDFContractAreaScqBuilder.get(phase);
 		pageRegion.addRegions(stripper);
 
 		for(PDPage page : document.getDocumentCatalog().getPages()){

@@ -1,4 +1,4 @@
-package com.doterob.transparencia.connector.scq;
+package com.doterob.transparencia.connector.extractor.pdf;
 
 import com.doterob.transparencia.model.Contract;
 
@@ -13,5 +13,5 @@ public interface PDFManager {
 
     List<Contract> extract() throws IOException, URISyntaxException;
 
-    String toText() throws IOException, URISyntaxException;
+    String testToText() throws IOException, URISyntaxException;
 }

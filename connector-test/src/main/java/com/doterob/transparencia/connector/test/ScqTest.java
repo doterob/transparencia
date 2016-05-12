@@ -1,11 +1,9 @@
 package com.doterob.transparencia.connector.test;
 
-import com.doterob.transparencia.connector.scq.PDFManager;
-import com.doterob.transparencia.connector.scq.pdfbox.PDFBoxManager;
+import com.doterob.transparencia.connector.extractor.pdf.PDFManager;
+import com.doterob.transparencia.connector.extractor.pdf.pdfbox.PDFBoxManager;
 import com.doterob.transparencia.elasticsearch.Client;
-import com.doterob.transparencia.elasticsearch.ESClient;
 import com.doterob.transparencia.elasticsearch.JestClient;
-import com.doterob.transparencia.model.Contract;
 import com.doterob.transparencia.model.Organization;
 import com.doterob.transparencia.model.OrganizationType;
 import com.doterob.transparencia.model.Publishing;

@@ -1,4 +1,4 @@
-package com.doterob.transparencia.connector.extractor.pdf;
+package com.doterob.transparencia.connector.contract.extractor.pdf;
 
 import com.doterob.transparencia.model.Contract;
 

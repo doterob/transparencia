@@ -1,7 +1,7 @@
-package com.doterob.transparencia.connector.scq.pdfbox;
+package com.doterob.transparencia.connector.contract.extractor.scq.pdfbox;
 
-import com.doterob.transparencia.connector.extractor.pdf.pdfbox.PDFContractArea;
-import com.doterob.transparencia.connector.extractor.pdf.pdfbox.PDFPage;
+import com.doterob.transparencia.connector.contract.extractor.pdf.pdfbox.PDFContractArea;
+import com.doterob.transparencia.connector.contract.extractor.pdf.pdfbox.PDFPage;
 
 import java.awt.*;
 

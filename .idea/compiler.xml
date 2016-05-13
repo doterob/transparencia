@@ -23,6 +23,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="connector-test" />
+        <module name="transparencia-connector" />
         <module name="transparencia-connector-scq" />
         <module name="transparencia-elasticsearch" />
       </profile>
@@ -30,9 +31,12 @@
     <bytecodeTargetLevel>
       <module name="connector-test" target="1.7" />
       <module name="model" target="1.7" />
+      <module name="transparencia" target="1.7" />
       <module name="transparencia-connector" target="1.7" />
       <module name="transparencia-connector-scq" target="1.7" />
       <module name="transparencia-elasticsearch" target="1.7" />
+      <module name="transparencia-geocoding" target="1.7" />
+      <module name="transparencia-model" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

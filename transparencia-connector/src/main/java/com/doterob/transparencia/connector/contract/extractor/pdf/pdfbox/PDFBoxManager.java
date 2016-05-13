@@ -1,4 +1,4 @@
-package com.doterob.transparencia.connector.extractor.pdf.pdfbox;
+package com.doterob.transparencia.connector.contract.extractor.pdf.pdfbox;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,9 +6,9 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
-import com.doterob.transparencia.connector.extractor.pdf.PDFManager;
-import com.doterob.transparencia.connector.scq.pdfbox.PDFContractAreaScqBuilder;
-import com.doterob.transparencia.connector.scq.pdfbox.ScqPDFRowConstants;
+import com.doterob.transparencia.connector.contract.extractor.pdf.PDFManager;
+import com.doterob.transparencia.connector.contract.extractor.scq.pdfbox.PDFContractAreaScqBuilder;
+import com.doterob.transparencia.connector.contract.extractor.scq.pdfbox.ScqPDFRowConstants;
 import com.doterob.transparencia.model.Contract;
 import org.apache.commons.io.FileUtils;
 import org.apache.pdfbox.io.RandomAccessFile;

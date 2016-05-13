@@ -1,4 +1,4 @@
-package com.doterob.transparencia.connector.extractor.pdf.itext;
+package com.doterob.transparencia.connector.contract.extractor.pdf.itext;
 
 import com.itextpdf.text.pdf.parser.ImageRenderInfo;
 import com.itextpdf.text.pdf.parser.LineSegment;

@@ -1,7 +1,6 @@
-package com.doterob.transparencia.connector.extractor.pdf.pdfbox;
+package com.doterob.transparencia.connector.contract.extractor.pdf.pdfbox;
 
 import com.doterob.transparencia.model.Contract;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
 
 import java.awt.*;

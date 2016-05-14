@@ -1,5 +1,6 @@
 package com.doterob.transparencia.connector.geocoding;
 
+import com.doterob.transparencia.model.Address;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.codec.EncoderException;
 import org.apache.commons.codec.net.URLCodec;
@@ -14,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Created by dotero on 13/05/2016.
@@ -24,9 +26,9 @@ public class GoogleGeocodingService implements GeocodingService {
     private static final String API_ENDPOINT = "https://maps.googleapis.com/maps/api/geocode/json?address=";
 
     @Override
-    public Point2D getPoint(String location){
+    public Address getAddress(String location){
 
-        Point2D result = null;
+        Address result = null;
 
         try{
 
@@ -42,7 +44,25 @@ public class GoogleGeocodingService implements GeocodingService {
                 final GoogleGeocodingResponse obj = mapper.readValue (EntityUtils.toString(entity), GoogleGeocodingResponse.class);
 
                 if(obj.results != null && obj.results.length > 0) {
-                    result = new Point2D.Double(Double.valueOf(obj.results[0].geometry.location.lat), Double.valueOf(obj.results[0].geometry.location.lng));
+
+                    final Point2D coordinates = new Point2D.Double(Double.valueOf(obj.results[0].geometry.location.lat), Double.valueOf(obj.results[0].geometry.location.lng));
+                    String locality = null;
+                    String province = null;
+                    String state = null;
+
+                    for (GoogleGeocodingResponse.address_component a : obj.results[0].address_components) {
+                        if(Arrays.asList(a.types).contains("locality")){
+                            locality = a.long_name;
+                        }
+                        if(Arrays.asList(a.types).contains("administrative_area_level_2")){
+                            province = a.long_name;
+                        }
+                        if(Arrays.asList(a.types).contains("administrative_area_level_1")){
+                            state = a.long_name;
+                        }
+                    }
+
+                    result = new Address(location, locality, province, state, coordinates);
                 }
             } finally {
                 //response.close();

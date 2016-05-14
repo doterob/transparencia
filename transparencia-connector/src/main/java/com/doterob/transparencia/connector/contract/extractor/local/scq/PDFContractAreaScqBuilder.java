@@ -1,4 +1,4 @@
-package com.doterob.transparencia.connector.contract.extractor.scq.pdfbox;
+package com.doterob.transparencia.connector.contract.extractor.local.scq;
 
 import com.doterob.transparencia.connector.contract.extractor.pdf.pdfbox.PDFContractArea;
 import com.doterob.transparencia.connector.contract.extractor.pdf.pdfbox.PDFPage;

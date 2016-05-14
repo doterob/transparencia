@@ -1,21 +1,17 @@
 package com.doterob.transparencia.connector.geocoding;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.apache.commons.codec.EncoderException;
 import org.apache.commons.codec.net.URLCodec;
 import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.IOException;
 
@@ -34,9 +30,9 @@ public class GoogleGeocodingService implements GeocodingService {
 
         try{
 
-            final CloseableHttpClient client = HttpClients.createDefault();
+            final HttpClient client = HttpClients.createDefault();
             final HttpGet request = new HttpGet(API_ENDPOINT + new URLCodec().encode(location));
-            final CloseableHttpResponse response = client.execute(request);
+            final HttpResponse response = client.execute(request);
 
             try {
 
@@ -49,8 +45,8 @@ public class GoogleGeocodingService implements GeocodingService {
                     result = new Point2D.Double(Double.valueOf(obj.results[0].geometry.location.lat), Double.valueOf(obj.results[0].geometry.location.lng));
                 }
             } finally {
-                response.close();
-                client.close();
+                //response.close();
+                //client.close();
             }
         } catch (IOException | EncoderException e){
             LOG.error(e);

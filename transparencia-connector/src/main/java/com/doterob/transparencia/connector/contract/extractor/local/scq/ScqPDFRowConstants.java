@@ -1,4 +1,4 @@
-package com.doterob.transparencia.connector.contract.extractor.scq.pdfbox;
+package com.doterob.transparencia.connector.contract.extractor.local.scq;
 
 /**
  * Created by dotero on 07/05/2016.

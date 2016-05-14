@@ -7,8 +7,8 @@ import java.net.URL;
 import java.util.*;
 
 import com.doterob.transparencia.connector.contract.extractor.pdf.PDFManager;
-import com.doterob.transparencia.connector.contract.extractor.scq.pdfbox.PDFContractAreaScqBuilder;
-import com.doterob.transparencia.connector.contract.extractor.scq.pdfbox.ScqPDFRowConstants;
+import com.doterob.transparencia.connector.contract.extractor.local.scq.PDFContractAreaScqBuilder;
+import com.doterob.transparencia.connector.contract.extractor.local.scq.ScqPDFRowConstants;
 import com.doterob.transparencia.model.Contract;
 import org.apache.commons.io.FileUtils;
 import org.apache.pdfbox.io.RandomAccessFile;

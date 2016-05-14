@@ -1,10 +1,11 @@
 package com.doterob.transparencia.connector.geocoding;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 /**
  * Created by dotero on 13/05/2016.
  */
-public interface GeocodingResolver {
-    Point getPoint(String location);
+public interface GeocodingService {
+    Point2D getPoint(String location);
 }

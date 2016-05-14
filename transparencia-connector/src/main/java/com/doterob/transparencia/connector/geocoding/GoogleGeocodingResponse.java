@@ -11,32 +11,34 @@
 
         }
 
-    class results{
+    public static class results{
         public String formatted_address ;
         public geometry geometry ;
         public String[] types;
         public address_component[] address_components;
+        public Boolean partial_match;
+        public String place_id;
     }
 
-    class geometry{
+        public static class geometry{
         public bounds bounds;
         public String location_type ;
         public location location;
         public bounds viewport;
     }
 
-    class bounds {
+        public static class bounds {
 
         public location northeast ;
         public location southwest ;
     }
 
-    class location{
+        public static class location{
         public String lat ;
         public String lng ;
     }
 
-    class address_component{
+        public static class address_component{
         public String long_name;
         public String short_name;
         public String[] types ;

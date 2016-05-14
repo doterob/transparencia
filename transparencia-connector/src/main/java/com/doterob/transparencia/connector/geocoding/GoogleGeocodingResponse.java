@@ -1,15 +1,16 @@
-    package com.doterob.transparencia.connector.geocoding;
+package com.doterob.transparencia.connector.geocoding;
 
-    /**
-     * Created by dotero on 13/05/2016.
-     */
-    public class GoogleGeocodingResponse {
+/**
+ * Created by dotero on 13/05/2016.
+ */
+class GoogleGeocodingResponse {
 
-        public String status ;
-        public results[] results ;
-        public GoogleGeocodingResponse() {
+    public String status ;
+    public results[] results ;
 
-        }
+    public GoogleGeocodingResponse() {
+
+    }
 
     public static class results{
         public String formatted_address ;
@@ -20,25 +21,25 @@
         public String place_id;
     }
 
-        public static class geometry{
+    public static class geometry{
         public bounds bounds;
         public String location_type ;
         public location location;
         public bounds viewport;
     }
 
-        public static class bounds {
+    public static class bounds {
 
         public location northeast ;
         public location southwest ;
     }
 
-        public static class location{
+    public static class location{
         public String lat ;
         public String lng ;
     }
 
-        public static class address_component{
+    public static class address_component{
         public String long_name;
         public String short_name;
         public String[] types ;

@@ -20,7 +20,7 @@ import java.util.Arrays;
 /**
  * Created by dotero on 13/05/2016.
  */
-public class GoogleGeocodingService implements GeocodingService {
+public class GoogleGeocodingService implements AddressService {
 
     private static final Logger LOG = LogManager.getLogger(GoogleGeocodingService.class);
     private static final String API_ENDPOINT = "https://maps.googleapis.com/maps/api/geocode/json?address=";
@@ -43,26 +43,26 @@ public class GoogleGeocodingService implements GeocodingService {
 
                 final GoogleGeocodingResponse obj = mapper.readValue (EntityUtils.toString(entity), GoogleGeocodingResponse.class);
 
-                if(obj.results != null && obj.results.length > 0) {
+                if(obj.status == "OK" && obj.results != null && obj.results.length > 0) {
 
-                    final Point2D coordinates = new Point2D.Double(Double.valueOf(obj.results[0].geometry.location.lat), Double.valueOf(obj.results[0].geometry.location.lng));
-                    String locality = null;
-                    String province = null;
-                    String state = null;
+                    final Address.Builder builder = new Address.Builder();
+
+                    builder.setAddress(location);
+                    builder.setCoordinates(new Point2D.Double(Double.valueOf(obj.results[0].geometry.location.lat), Double.valueOf(obj.results[0].geometry.location.lng)));
 
                     for (GoogleGeocodingResponse.address_component a : obj.results[0].address_components) {
                         if(Arrays.asList(a.types).contains("locality")){
-                            locality = a.long_name;
+                            builder.setLocality(a.long_name);
                         }
                         if(Arrays.asList(a.types).contains("administrative_area_level_2")){
-                            province = a.long_name;
+                            builder.setProvince(a.long_name);
                         }
                         if(Arrays.asList(a.types).contains("administrative_area_level_1")){
-                            state = a.long_name;
+                            builder.setState(a.long_name);
                         }
                     }
 
-                    result = new Address(location, locality, province, state, coordinates);
+                    result = builder.build();
                 }
             } finally {
                 //response.close();

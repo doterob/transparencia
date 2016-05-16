@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.doterob.transparencia.connector.contract.extractor.pdf.PDFManager;
-import com.doterob.transparencia.model.Contract;
+import com.doterob.transparencia.model.ContractComplex;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
@@ -30,7 +30,7 @@ public class ITextManager implements PDFManager {
 		return result.toString();
 	}
 
-    public List<Contract> extract() throws IOException, URISyntaxException {
-        return new ArrayList<Contract>();
+    public List<ContractComplex> extract() throws IOException, URISyntaxException {
+        return new ArrayList<ContractComplex>();
     }
 }

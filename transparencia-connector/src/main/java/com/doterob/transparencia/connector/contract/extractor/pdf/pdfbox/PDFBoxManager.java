@@ -9,7 +9,7 @@ import java.util.*;
 import com.doterob.transparencia.connector.contract.extractor.pdf.PDFManager;
 import com.doterob.transparencia.connector.contract.extractor.local.scq.PDFContractAreaScqBuilder;
 import com.doterob.transparencia.connector.contract.extractor.local.scq.ScqPDFRowConstants;
-import com.doterob.transparencia.model.Contract;
+import com.doterob.transparencia.model.ContractComplex;
 import org.apache.commons.io.FileUtils;
 import org.apache.pdfbox.io.RandomAccessFile;
 import org.apache.pdfbox.pdfparser.PDFParser;
@@ -38,20 +38,20 @@ public class PDFBoxManager implements PDFManager {
 		return new PDFTextStripper().getText(document);
     }
 
-    public List<Contract> extract() throws IOException, URISyntaxException {
+    public List<ContractComplex> extract() throws IOException, URISyntaxException {
 
-		final Map<String, Contract> result = new TreeMap<String, Contract>();
+		final Map<String, ContractComplex> result = new TreeMap<String, ContractComplex>();
 
 		for(int phase : ScqPDFRowConstants.PHASES) {
 			result.putAll(explorePhase(document, phase));
 		}
 
-		return  new ArrayList<Contract>(result.values());
+		return  new ArrayList<ContractComplex>(result.values());
 	}
 
-	private Map<String, Contract> explorePhase(final PDDocument document, int phase) throws IOException {
+	private Map<String, ContractComplex> explorePhase(final PDDocument document, int phase) throws IOException {
 
-		final Map<String, Contract> result = new HashMap<String, Contract>();
+		final Map<String, ContractComplex> result = new HashMap<String, ContractComplex>();
 
 		final PDFTextStripperByArea stripper = new PDFTextStripperByArea();
 		stripper.setSortByPosition(true);

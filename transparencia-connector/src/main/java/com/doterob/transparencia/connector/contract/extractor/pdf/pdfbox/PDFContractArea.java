@@ -1,6 +1,6 @@
 package com.doterob.transparencia.connector.contract.extractor.pdf.pdfbox;
 
-import com.doterob.transparencia.model.Contract;
+import com.doterob.transparencia.model.ContractComplex;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
 
 import java.awt.*;
@@ -44,7 +44,7 @@ public class PDFContractArea {
         stripper.addRegion(id+"-amount",amount);
     }
 
-    public Contract extractContact(PDFTextStripperByArea stripper){
+    public ContractComplex extractContact(PDFTextStripperByArea stripper){
 
         final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date date = null;
@@ -54,13 +54,13 @@ public class PDFContractArea {
             amount = Float.parseFloat(stripper.getTextForRegion(id+"-amount").replace("\r\n"," ").replace(".","").replace(",",".").trim());
         } catch (ParseException|NumberFormatException e){}
 
-        return new Contract(stripper.getTextForRegion(id+"-id").replace("\r\n"," ").trim(),
+        return null;/* new ContractComplex(stripper.getTextForRegion(id+"-id").replace("\r\n"," ").trim(),
                 date,
                 stripper.getTextForRegion(id+"-subject").replace("\r\n"," ").trim(),
                 stripper.getTextForRegion(id+"-contractorId").replace("\r\n"," ").trim(),
                 stripper.getTextForRegion(id+"-contractorName").replace("\r\n"," ").trim(),
                 stripper.getTextForRegion(id+"-organizationArea").replace("\r\n"," ").trim(),
-                amount);
+                amount);*/
     }
 
     @Override

@@ -5,6 +5,9 @@ import com.doterob.transparencia.model.Address;
 import com.doterob.transparencia.model.Company;
 import org.junit.Assert;
 
+import java.util.Arrays;
+import java.util.Map;
+
 /**
  * Created by dotero on 14/05/2016.
  */
@@ -22,10 +25,10 @@ public class CompanyServiceTest {
     @org.junit.Test
     public void getInfo() throws Exception {
 
-        final Company expected = new Company("A33526369", "DESARROLLO DE ESTRATEGIAS EXTERIORES SA", "Plaza San Miguel 1 5º -izquierda.  33202  - (Gijon) - Asturias", null);
-        final Company result = new CompanyService().getInfo("A33526369");
+        final Company expected = new Company("A33526369", "DESARROLLO DE ESTRATEGIAS EXTERIORES SA", null);
+        final Map<String, Company> result = new CompanyService().getInfo(Arrays.asList("A33526369"));
 
-        Address point = new GoogleGeocodingService().getAddress(expected.getLocation());
+        Address point = GoogleGeocodingService.getInstance().getAddress("Plaza San Miguel 1 5º -izquierda.  33202  - (Gijon) - Asturias");
 
         Assert.assertEquals(result, expected);
     }

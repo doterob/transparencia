@@ -1,6 +1,6 @@
 package com.doterob.transparencia.connector.contract.extractor.xunta;
 
-import com.doterob.transparencia.model.Contract;
+import com.doterob.transparencia.model.ContractComplex;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.impl.client.*;
@@ -24,14 +24,14 @@ public class XuntaConnectorExecutor implements XuntaConnector {
     private static final Logger LOG = LogManager.getLogger(XuntaConnectorExecutor.class);
 
     @Override
-    public List<Contract> extract(Date start, Date end) {
+    public List<ContractComplex> extract(Date start, Date end) {
 
-        final List<Contract> result = new ArrayList<>();
+        final List<ContractComplex> result = new ArrayList<>();
 
         final CookieStore cookies = new BasicCookieStore();
         final PoolingHttpClientConnectionManager manager = new PoolingHttpClientConnectionManager();
         manager.setMaxTotal(MAX_CONNECTIONS);
-        final CloseableHttpClient client = HttpClientBuilder.create().setConnectionManager(manager).setDefaultCookieStore(cookies).setMaxConnPerRoute(5).build();
+        final CloseableHttpClient client = HttpClientBuilder.create().setConnectionManager(manager).setDefaultCookieStore(cookies).setMaxConnPerRoute(MAX_CONNECTIONS).build();
         final ExecutorService executorService = Executors.newFixedThreadPool(MAX_CONNECTIONS);
         final FutureRequestExecutionService futureRequestExecutionService =
                 new FutureRequestExecutionService(client, executorService);
@@ -41,7 +41,7 @@ public class XuntaConnectorExecutor implements XuntaConnector {
         try {
 
             client.execute(XuntaRequestBuilder.session());
-            final List<HttpRequestFutureTask<List<Contract>>> tasks = new ArrayList<HttpRequestFutureTask<List<Contract>>>();
+            final List<HttpRequestFutureTask<List<ContractComplex>>> tasks = new ArrayList<HttpRequestFutureTask<List<ContractComplex>>>();
             XuntaContractPage page = client.execute(XuntaRequestBuilder.search(start,end), new XuntaContractPageResponseHandler());
             do{
 
@@ -56,14 +56,14 @@ public class XuntaConnectorExecutor implements XuntaConnector {
                 }
             }while (page.getNext() != null);
 
-            for (HttpRequestFutureTask<List<Contract>> task : tasks){
+            for (HttpRequestFutureTask<List<ContractComplex>> task : tasks){
                 result.addAll(task.get());
             }
 
             return result;
 
         } catch (IOException | InterruptedException | ExecutionException e){
-            LOG.error(e);
+            //LOG.error(e);
             System.out.println(e);
         } finally {
 

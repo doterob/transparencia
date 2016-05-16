@@ -30,20 +30,21 @@ public class AWSClient implements com.doterob.transparencia.elasticsearch.Client
         final List<Tag> tags = new ArrayList<>();
 
         final AddTagsRequest request = new AddTagsRequest();
-        request.withTagList(convertAll(publishings));
+        //request.withTagList(convertAll(publishings));
 
         client.addTags(request);
     }
 
     private List<Tag> convertAll(List<? extends  Contract> contracts){
-        final List<Tag> result = new ArrayList<>();
+        /*final List<Tag> result = new ArrayList<>();
         for(Contract c : contracts){
             result.addAll(convert(c));
         }
-        return result;
+        return result;*/
+        return null;
     }
 
-    private List<Tag> convert(Contract contract){
+   /* private List<Tag> convert(Contract contract){
         final List<Tag> result = new ArrayList<Tag>();
         result.add(tag("id", contract.getId()));
         result.add(tag("date", contract.getDate().toString()));
@@ -60,5 +61,5 @@ public class AWSClient implements com.doterob.transparencia.elasticsearch.Client
         result.withKey(key);
         result.withValue(value);
         return result;
-    }
+    }*/
 }

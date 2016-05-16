@@ -1,6 +1,6 @@
 package com.doterob.transparencia.connector.contract.extractor.pdf.pdfbox;
 
-import com.doterob.transparencia.model.Contract;
+import com.doterob.transparencia.model.ContractComplex;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
 
 import java.util.ArrayList;
@@ -37,16 +37,16 @@ public class PDFPage {
         }
     }
 
-    public Map<String, Contract> extractContracts(PDFTextStripperByArea stripper){
+    public Map<String, ContractComplex> extractContracts(PDFTextStripperByArea stripper){
 
-        final Map<String, Contract> result = new HashMap<String, Contract>();
+        final Map<String, ContractComplex> result = new HashMap<String, ContractComplex>();
 
         for(int i = 0; i < areas.size(); i++){
 
-            final Contract contract = areas.get(i).extractContact(stripper);
-            if(contract.isValid()) {
+            final ContractComplex contract = areas.get(i).extractContact(stripper);
+           /* if(contract.isValid()) {
                 result.put(contract.getId(), contract);
-            }
+            }*/
         }
 
         return result;

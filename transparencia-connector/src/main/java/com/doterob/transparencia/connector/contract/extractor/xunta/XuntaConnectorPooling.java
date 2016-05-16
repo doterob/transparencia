@@ -1,6 +1,6 @@
 package com.doterob.transparencia.connector.contract.extractor.xunta;
 
-import com.doterob.transparencia.model.Contract;
+import com.doterob.transparencia.model.ContractComplex;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.impl.client.BasicCookieStore;
@@ -23,9 +23,9 @@ public class XuntaConnectorPooling implements XuntaConnector {
 
     private static final Logger LOG = LogManager.getLogger(XuntaConnectorPooling.class);
 
-    public List<Contract> extract(Date start, Date end) {
+    public List<ContractComplex> extract(Date start, Date end) {
 
-        final List<Contract> result = new ArrayList<>();
+        final List<ContractComplex> result = new ArrayList<>();
 
         final CookieStore cookies = new BasicCookieStore();
         final PoolingHttpClientConnectionManager manager = new PoolingHttpClientConnectionManager();
@@ -84,7 +84,7 @@ public class XuntaConnectorPooling implements XuntaConnector {
         private final CloseableHttpClient client;
         private final HttpContext context;
         private final String code;
-        private List<Contract> result;
+        private List<ContractComplex> result;
 
         public FindThread(CloseableHttpClient client, String code) {
             this.client = client;
@@ -103,7 +103,7 @@ public class XuntaConnectorPooling implements XuntaConnector {
             }
         }
 
-        public List<Contract> getResult(){
+        public List<ContractComplex> getResult(){
             return result;
         }
 

@@ -1,7 +1,5 @@
 package com.doterob.transparencia.elasticsearch;
 
-import com.doterob.transparencia.model.Contract;
-import com.doterob.transparencia.model.Organization;
 import com.doterob.transparencia.model.Publishing;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

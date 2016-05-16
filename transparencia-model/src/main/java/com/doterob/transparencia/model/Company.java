@@ -9,14 +9,12 @@ public class Company {
 
     private final String id;
     private final String name;
-    private final String location;
-    private final Point coordinates;
+    private final Address address;
 
-    public Company(String id, String name, String location, Point coordinates) {
+    public Company(String id, String name, Address address) {
         this.id = id;
         this.name = name;
-        this.location = location;
-        this.coordinates = coordinates;
+        this.address = address;
     }
 
     public String getId() {
@@ -27,12 +25,8 @@ public class Company {
         return name;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public Point getCoordinates() {
-        return coordinates;
+    public Address getAddress() {
+        return address;
     }
 
     @Override
@@ -44,8 +38,7 @@ public class Company {
 
         if (id != null ? !id.equals(company.id) : company.id != null) return false;
         if (name != null ? !name.equals(company.name) : company.name != null) return false;
-        if (location != null ? !location.equals(company.location) : company.location != null) return false;
-        return coordinates != null ? coordinates.equals(company.coordinates) : company.coordinates == null;
+        return address != null ? address.equals(company.address) : company.address == null;
 
     }
 
@@ -53,8 +46,7 @@ public class Company {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (location != null ? location.hashCode() : 0);
-        result = 31 * result + (coordinates != null ? coordinates.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
         return result;
     }
 }

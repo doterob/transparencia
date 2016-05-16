@@ -14,8 +14,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>transparencia-connector</groupId>
-            <artifactId>transparencia-connector-model</artifactId>
+            <groupId>doterob-transparencia</groupId>
+            <artifactId>transparencia-model</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

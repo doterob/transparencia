@@ -1,6 +1,6 @@
 package com.doterob.transparencia.connector.contract.extractor.pdf;
 
-import com.doterob.transparencia.model.Contract;
+import com.doterob.transparencia.model.ContractComplex;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface PDFManager {
 
-    List<Contract> extract() throws IOException, URISyntaxException;
+    List<ContractComplex> extract() throws IOException, URISyntaxException;
 
     String testToText() throws IOException, URISyntaxException;
 }

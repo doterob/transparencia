@@ -1,6 +1,6 @@
 package com.doterob.transparencia.connector.contract.extractor.xunta;
 
-import com.doterob.transparencia.model.Contract;
+import com.doterob.transparencia.model.ContractComplex;
 
 import java.util.Date;
 import java.util.List;
@@ -12,5 +12,5 @@ public interface XuntaConnector {
 
     int MAX_CONNECTIONS = 10;
 
-    List<Contract> extract(Date start, Date end);
+    List<ContractComplex> extract(Date start, Date end);
 }

@@ -1,12 +1,5 @@
 package com.doterob.transparencia.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by dotero on 07/05/2016.
  */

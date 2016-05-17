@@ -3,6 +3,8 @@ package com.doterob.transparencia.elasticsearch;
 import com.doterob.transparencia.model.Publishing;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
@@ -11,17 +13,17 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by dotero on 08/05/2016.
  */
 public class ESClient implements com.doterob.transparencia.elasticsearch.Client {
 
+    private static final Logger LOG = LogManager.getLogger(ESClient.class);
+
     @Override
-    public void indexContracts(String index, List<Publishing> publishings) throws UnknownHostException{
+    public void indexContracts(String index, String type, List<Publishing> publishings) throws UnknownHostException{
 
         Settings settings = Settings.settingsBuilder()
                 .put("client.transport.sniff", true).build();
@@ -37,7 +39,7 @@ public class ESClient implements com.doterob.transparencia.elasticsearch.Client 
                 IndexResponse response = client.prepareIndex(index, p.getType().toString())
                         .setSource(ob.writeValueAsString(p)).get();
             }
-        }catch (JsonProcessingException e){System.out.println(e);}
+        }catch (JsonProcessingException e){LOG.debug(e);}
         client.close();
     }
 }

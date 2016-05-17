@@ -1,6 +1,8 @@
 package com.doterob.transparencia.connector.contract.extractor.pdf.pdfbox;
 
 import com.doterob.transparencia.model.ContractComplex;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
 
 import java.util.ArrayList;
@@ -13,9 +15,8 @@ import java.util.Map;
  */
 public class PDFPage {
 
-    /*private final int firstRow;
-    private final int total;
-    private final float step;*/
+    private static final Logger LOG = LogManager.getLogger(PDFPage.class);
+
     private final List<PDFContractArea> areas;
 
     public PDFPage(List<PDFContractArea> areas) {
@@ -55,7 +56,7 @@ public class PDFPage {
     public void printRegions(){
 
         for(PDFContractArea row : areas){
-            System.out.println(row.toString());
+            LOG.debug(row.toString());
         }
     }
 }

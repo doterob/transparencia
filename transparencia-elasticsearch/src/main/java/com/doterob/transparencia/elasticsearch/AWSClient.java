@@ -25,7 +25,7 @@ public class AWSClient implements com.doterob.transparencia.elasticsearch.Client
         client.setEndpoint("search-transparencia-3kwgan64yqnamybgoc5xip3wce.eu-central-1.es.amazonaws.com");
     }
 
-    public void indexContracts(String index, List<Publishing> publishings) throws UnknownHostException{
+    public void indexContracts(String index, String type, List<Publishing> publishings) throws UnknownHostException{
 
         final List<Tag> tags = new ArrayList<>();
 

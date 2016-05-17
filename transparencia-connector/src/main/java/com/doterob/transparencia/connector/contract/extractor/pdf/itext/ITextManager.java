@@ -1,15 +1,15 @@
 package com.doterob.transparencia.connector.contract.extractor.pdf.itext;
 
+import com.doterob.transparencia.connector.contract.extractor.pdf.PDFManager;
+import com.doterob.transparencia.model.ContractComplex;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.parser.PdfTextExtractor;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.doterob.transparencia.connector.contract.extractor.pdf.PDFManager;
-import com.doterob.transparencia.model.ContractComplex;
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
 public class ITextManager implements PDFManager {
 

@@ -1,15 +1,91 @@
 {
-  "local" : {
-    "properties" : {
-      "codigo" : {"type" : "string", "store" : "yes"},
-      "importe" : {"type" : "float", "store" : "yes"},
-      "fecha" : 	{"type" : "date", "format":"dd-MM-yyyy", "store" : "yes"},
-      "concepto" : 	{"type" : "string", "store" : "yes", "index":    "not_analyzed"},
-      "cif" : 	{"type" : "string", "store" : "yes"},
-      "contratante" : 	{"type" : "string", "store" : "yes", "index":    "not_analyzed"},
-      "area" : 	{"type" : "string", "store" : "yes","index":    "not_analyzed"},
-      "entidad" : 	{"type" : "string", "store" : "yes", "index":    "not_analyzed"},
-      "fuente" : 	{"type" : "string", "store" : "yes"}
+  "settings": {
+    "number_of_shards": 3
+  },
+  "mappings": {
+    "contrato": {
+      "_source": {
+        "enabled": true
+      },
+      "properties": {
+        "codigo": {
+          "type": "string",
+          "store": "yes"
+        },
+        "fecha": {
+          "type": "date",
+          "format": "dd-MM-yyyy",
+          "store": "yes"
+        },
+        "concepto": {
+          "type": "string",
+          "store": "yes",
+          "index": "not_analyzed"
+        },
+        "categoria": {
+          "type": "string",
+          "store": "yes",
+          "index": "not_analyzed"
+        },
+        "importe": {
+          "type": "float",
+          "store": "yes"
+        },
+        "lote": {
+          "type": "integer",
+          "store": "yes"
+        },
+        "url": {
+          "type": "string",
+          "store": "yes",
+          "index": "not_analyzed"
+        },
+        "entidad": {
+          "type": "string",
+          "store": "yes",
+          "index": "not_analyzed"
+        },
+        "organo": {
+          "type": "string",
+          "store": "yes",
+          "index": "not_analyzed"
+        },
+        "ambito": {
+          "type": "string",
+          "store": "yes",
+          "index": "not_analyzed"
+        },
+        "cif": {
+          "type": "string",
+          "store": "yes",
+          "index": "not_analyzed"
+        },
+        "contratante": {
+          "type": "string",
+          "store": "yes",
+          "index": "not_analyzed"
+        },
+        "ayuntamiento": {
+          "type": "string",
+          "store": "yes",
+          "index": "not_analyzed"
+        },
+        "provincia": {
+          "type": "string",
+          "store": "yes",
+          "index": "not_analyzed"
+        },
+        "autonomia": {
+          "type": "string",
+          "store": "yes",
+          "index": "not_analyzed"
+        },
+        "coordenadas": {
+          "type": "geo_point",
+          "geohash": true,
+          "dynamic": true
+        }
+      }
     }
   }
 }

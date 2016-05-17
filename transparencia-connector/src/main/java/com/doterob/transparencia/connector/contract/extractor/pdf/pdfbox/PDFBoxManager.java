@@ -1,14 +1,8 @@
 package com.doterob.transparencia.connector.contract.extractor.pdf.pdfbox;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.*;
-
-import com.doterob.transparencia.connector.contract.extractor.pdf.PDFManager;
 import com.doterob.transparencia.connector.contract.extractor.local.scq.PDFContractAreaScqBuilder;
 import com.doterob.transparencia.connector.contract.extractor.local.scq.ScqPDFRowConstants;
+import com.doterob.transparencia.connector.contract.extractor.pdf.PDFManager;
 import com.doterob.transparencia.model.ContractComplex;
 import org.apache.commons.io.FileUtils;
 import org.apache.pdfbox.io.RandomAccessFile;
@@ -17,6 +11,12 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.*;
 
 public class PDFBoxManager implements PDFManager {
 

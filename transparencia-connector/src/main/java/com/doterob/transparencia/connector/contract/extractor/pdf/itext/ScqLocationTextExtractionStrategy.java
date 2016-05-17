@@ -1,17 +1,18 @@
 package com.doterob.transparencia.connector.contract.extractor.pdf.itext;
 
-import com.itextpdf.text.pdf.parser.ImageRenderInfo;
-import com.itextpdf.text.pdf.parser.LineSegment;
-import com.itextpdf.text.pdf.parser.Matrix;
-import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
-import com.itextpdf.text.pdf.parser.TextRenderInfo;
-import com.itextpdf.text.pdf.parser.Vector;
+import com.itextpdf.text.pdf.parser.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 public class ScqLocationTextExtractionStrategy implements TextExtractionStrategy {
+
+    private static final Logger LOG = LogManager.getLogger(ScqLocationTextExtractionStrategy.class);
+
     static boolean DUMP_STATE = false;
     private final List<ScqLocationTextExtractionStrategy.TextChunk> locationalResult;
     private final ScqLocationTextExtractionStrategy.TextChunkLocationStrategy tclStrat;
@@ -109,7 +110,6 @@ public class ScqLocationTextExtractionStrategy implements TextExtractionStrategy
         while(var1.hasNext()) {
             ScqLocationTextExtractionStrategy.TextChunk location = (ScqLocationTextExtractionStrategy.TextChunk)var1.next();
             location.printDiagnostics();
-            System.out.println();
         }
 
     }
@@ -174,10 +174,10 @@ public class ScqLocationTextExtractionStrategy implements TextExtractionStrategy
         }
 
         private void printDiagnostics() {
-            System.out.println("Text (@" + this.location.getStartLocation() + " -> " + this.location.getEndLocation() + "): " + this.text);
-            System.out.println("orientationMagnitude: " + this.location.orientationMagnitude());
-            System.out.println("distPerpendicular: " + this.location.distPerpendicular());
-            System.out.println("distParallel: " + this.location.distParallelStart());
+            LOG.debug("Text (@" + this.location.getStartLocation() + " -> " + this.location.getEndLocation() + "): " + this.text);
+            LOG.debug("orientationMagnitude: " + this.location.orientationMagnitude());
+            LOG.debug("distPerpendicular: " + this.location.distPerpendicular());
+            LOG.debug("distParallel: " + this.location.distParallelStart());
         }
 
         public int compareTo(ScqLocationTextExtractionStrategy.TextChunk rhs) {

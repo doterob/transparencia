@@ -2,10 +2,8 @@ package com.doterob.transparencia.elasticsearch;
 
 import io.searchbox.client.config.HttpClientConfig;
 import org.apache.log4j.Logger;
-import org.apache.lucene.search.ScoringRewrite;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -18,7 +16,7 @@ public class JestConfig {
 
     private static final String FILE_NAME = "aws-es.properties";
     private static final String ENDPOINT = "endpoint";
-    private static final String USER = "usr";
+    private static final String USER = "user";
     private static final String PASSWORD = "password";
 
     private Properties properties;

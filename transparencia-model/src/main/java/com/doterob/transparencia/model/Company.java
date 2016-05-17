@@ -1,7 +1,5 @@
 package com.doterob.transparencia.model;
 
-import java.awt.*;
-
 /**
  * Created by dotero on 14/05/2016.
  */

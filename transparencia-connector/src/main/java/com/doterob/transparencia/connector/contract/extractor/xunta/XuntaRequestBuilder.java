@@ -1,18 +1,12 @@
 package com.doterob.transparencia.connector.contract.extractor.xunta;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.http.Consts;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -31,6 +25,14 @@ public class XuntaRequestBuilder {
 
     public static HttpGet find(String code){
         return new HttpGet(CONTRACT_ENDPOINT + code);
+    }
+
+    public static Map<String, HttpGet>  findAll(List<String> codes){
+        final Map<String, HttpGet> result = new HashMap<>();
+        for (String code : codes){
+            result.put(code, find(code));
+        }
+        return result;
     }
 
     public static HttpGet next(String next){

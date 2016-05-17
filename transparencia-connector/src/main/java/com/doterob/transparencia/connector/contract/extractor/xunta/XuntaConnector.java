@@ -13,4 +13,6 @@ public interface XuntaConnector {
     int MAX_CONNECTIONS = 10;
 
     List<ContractComplex> extract(Date start, Date end);
+
+    void close();
 }

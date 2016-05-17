@@ -1,28 +1,25 @@
 package com.doterob.transparencia.connector.geocoding;
 
 import com.doterob.transparencia.model.Address;
-import com.doterob.transparencia.model.Company;
-import com.doterob.transparencia.model.ContractComplex;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.util.EntityUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by dotero on 15/05/2016.
  */
 public class GoogleGeocodingResponseHandler implements ResponseHandler<Address> {
+
+    private static final Logger LOG = LogManager.getLogger(GoogleGeocodingResponseHandler.class);
 
     private static final String ID_FIELD = "col-md-10.col-sm-9.col-xs-12.mtnone.mb10.sessionnif";
     private static final String NAME_FIELD = "h1.title.title-sm.title-margin.mtnone.roboto.mbnone";
@@ -34,9 +31,10 @@ public class GoogleGeocodingResponseHandler implements ResponseHandler<Address> 
         final ObjectMapper mapper = new ObjectMapper();
         final HttpEntity entity = response.getEntity();
 
-        final GoogleGeocodingResponse obj = mapper.readValue (EntityUtils.toString(entity), GoogleGeocodingResponse.class);
+        final String json = EntityUtils.toString(entity);
+        final GoogleGeocodingResponse obj = mapper.readValue (json, GoogleGeocodingResponse.class);
 
-        if(obj.status == "OK" && obj.results != null && obj.results.length > 0) {
+        if(obj.results != null && obj.results.length > 0) {
 
             final Address.Builder builder = new Address.Builder();
 
@@ -58,6 +56,7 @@ public class GoogleGeocodingResponseHandler implements ResponseHandler<Address> 
             return builder.build();
         }
 
+        //LOG.debug("No se ha obtenido dirección -> " + json);
         return null;
     }
 }

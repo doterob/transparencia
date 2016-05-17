@@ -23,6 +23,18 @@ public class XuntaConnectorPooling implements XuntaConnector {
 
     private static final Logger LOG = LogManager.getLogger(XuntaConnectorPooling.class);
 
+    private final CookieStore cookies;
+    private final PoolingHttpClientConnectionManager manager;
+    private final CloseableHttpClient client;
+
+    public XuntaConnectorPooling(){
+
+        cookies = new BasicCookieStore();
+        manager = new PoolingHttpClientConnectionManager();
+        manager.setMaxTotal(MAX_CONNECTIONS);
+        client = HttpClients.custom().setConnectionManager(manager).setDefaultCookieStore(cookies).build();
+    }
+
     public List<ContractComplex> extract(Date start, Date end) {
 
         final List<ContractComplex> result = new ArrayList<>();
@@ -63,20 +75,28 @@ public class XuntaConnectorPooling implements XuntaConnector {
             return result;
 
         } catch (IOException | InterruptedException e){
-            LOG.error(e);
-            System.out.println(e);
+            LOG.error("Error obteniendo contratos", e);
         } finally {
 
             try {
                 client.close();
                 manager.close();
             } catch (IOException e){
-                    LOG.error(e);
-                    System.out.println(e);
+                    LOG.error("Error cerrando HttpClient", e);
                 }
         }
 
         return null;
+    }
+
+    @Override
+    public void close() {
+        try {
+            manager.close();
+            client.close();
+        } catch (IOException e){
+            LOG.error("Error cerrando HttpClient", e);
+        }
     }
 
     private static class FindThread extends Thread {
@@ -99,7 +119,7 @@ public class XuntaConnectorPooling implements XuntaConnector {
                 result = client.execute(XuntaRequestBuilder.find(code), new ContractResponseHandler(), context);
 
             } catch (IOException e) {
-                LOG.error(e);
+                LOG.error("Error en hilo contrato", e);
             }
         }
 

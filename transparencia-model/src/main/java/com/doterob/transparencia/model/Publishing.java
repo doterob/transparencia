@@ -1,17 +1,15 @@
 package com.doterob.transparencia.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.org.apache.bcel.internal.generic.FLOAD;
 
-import java.awt.geom.Point2D;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by dotero on 08/05/2016.
  */
+@JsonAutoDetect
 public class Publishing {
 
     @JsonProperty("codigo")
@@ -20,6 +18,8 @@ public class Publishing {
     private final Date date;
     @JsonProperty("concepto")
     private final String subject;
+    @JsonProperty("categoria")
+    private final String category;
     @JsonProperty("importe")
     private final Float amount;
     @JsonProperty("lote")
@@ -29,9 +29,9 @@ public class Publishing {
 
     @JsonProperty("entidad")
     private final String organizationName;
-    @JsonProperty("area")
+    @JsonProperty("organo")
     private final String organizationArea;
-    @JsonProperty("tipo")
+    @JsonProperty("ambito")
     private final OrganizationType type;
 
     @JsonProperty("cif")
@@ -49,12 +49,13 @@ public class Publishing {
     @JsonProperty("coordenadas")
     private final Location coordinates;
 
-    public Publishing(String code, Date date, String subject, String contractorId, String contractorName, String organizationArea,
+    public Publishing(String code, Date date, String subject, String category, String contractorId, String contractorName, String organizationArea,
                       Float amount, String organizationName, String url, Integer lot,  OrganizationType type,
                       String address, String locality, String province, String state, Location coordinates) {
         this.code = code;
         this.date = date;
         this.subject = subject;
+        this.category = category;
         this.contractorId = contractorId;
         this.contractorName = contractorName;
         this.organizationArea = organizationArea;
@@ -81,6 +82,8 @@ public class Publishing {
     public String getSubject() {
         return subject;
     }
+
+    public String getCategory(){ return category;}
 
     public Float getAmount() {
         return amount;
@@ -154,31 +157,70 @@ public class Publishing {
 
     public static class Builder {
 
-        private Contract contract;
-        private Organization organization;
-        private Company company;
+        private  String code;
+        private  Date date;
+        private  String subject;
+        private String category;
+        private  Float amount;
+        private  Integer lot;
+        private  String url;
+
+        private  String organizationName;
+        private  String organizationArea;
+        private  OrganizationType type;
+
+        private  String contractorId;
+        private  String contractorName;
+        private  String address;
+        private  String locality;
+        private  String province;
+        private  String state;
+        private  Location coordinates;
+
+        public Builder setContract(ContractComplex contract) {
+            setContract(contract.getContract());
+            setOrganization(contract.getOrganization());
+            contractorId = contract.getNif();
+            contractorName = contract.getCompanyName();
+            return this;
+        }
 
         public Builder setContract(Contract contract) {
-            this.contract = contract;
+            code  = contract.getId();
+            date = contract.getDate();
+            subject = contract.getSubject();
+            category = contract.getCategory();
+            amount = contract.getAmount();
+            lot = contract.getLot();
+            url = contract.getUrl();
             return this;
         }
 
         public Builder setOrganization(Organization organization) {
-            this.organization = organization;
+            organizationName = organization.getName();
+            organizationArea = organization.getArea();
+            type = organization.getType();
             return this;
         }
 
         public Builder setCompany(Company company) {
-            this.company = company;
+            if(company != null) {
+                contractorId = company.getId();
+                contractorName = company.getName();
+                if(company.getAddress() != null) {
+                    address = company.getAddress().getAddress();
+                    locality = company.getAddress().getLocality();
+                    province = company.getAddress().getProvince();
+                    state = company.getAddress().getState();
+                    coordinates = new Location(company.getAddress().getCoordinates().getX(), company.getAddress().getCoordinates().getY());
+                }
+            }
             return this;
         }
 
         public Publishing build(){
 
-            return new Publishing(contract.getId(), contract.getDate(),contract.getSubject(), company.getId(), company.getName(), organization.getArea(),
-                    contract.getAmount(), organization.getName(), contract.getUrl(), contract.getLot(), organization.getType(),
-                    company.getAddress().getAddress(), company.getAddress().getLocality(), company.getAddress().getProvince(), company.getAddress().getState(),
-                    new Location(company.getAddress().getCoordinates().getX(), company.getAddress().getCoordinates().getY()));
+            return new Publishing(code, date, subject, category, contractorId, contractorName, organizationArea, amount, organizationName, url, lot, type, address, locality, province, state, coordinates);
         }
     }
 }

@@ -1,8 +1,6 @@
 package com.doterob.transparencia.model;
 
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by dotero on 14/05/2016.

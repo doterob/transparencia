@@ -26,6 +26,7 @@
         <module name="transparencia-connector" />
         <module name="transparencia-connector-scq" />
         <module name="transparencia-elasticsearch" />
+        <module name="transparencia-model" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

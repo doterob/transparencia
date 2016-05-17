@@ -1,7 +1,5 @@
 package com.doterob.transparencia.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.Date;
 
 /**
@@ -14,16 +12,16 @@ public class Contract {
     private final String subject;
     private final Float amount;
     private final String url;
-    private final String type;
+    private final String category;
     private final Integer lot;
 
-    public Contract(String id, Date date, String subject, Float amount, String url, String type, Integer lot) {
+    public Contract(String id, Date date, String subject, Float amount, String url, String category, Integer lot) {
         this.id = id;
         this.date = date;
         this.subject = subject;
         this.amount = amount;
         this.url = url;
-        this.type = type;
+        this.category = category;
         this.lot = lot;
     }
 
@@ -47,8 +45,8 @@ public class Contract {
         return url;
     }
 
-    public String getType() {
-        return type;
+    public String getCategory() {
+        return category;
     }
 
     public Integer getLot() {

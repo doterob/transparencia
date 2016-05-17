@@ -26,7 +26,7 @@ public class CompanyServiceTest {
     public void getInfo() throws Exception {
 
         final Company expected = new Company("A33526369", "DESARROLLO DE ESTRATEGIAS EXTERIORES SA", null);
-        final Map<String, Company> result = new CompanyService().getInfo(Arrays.asList("A33526369"));
+        final Company result = new CompanyService().find("A33526369");
 
         Address point = GoogleGeocodingService.getInstance().getAddress("Plaza San Miguel 1 5º -izquierda.  33202  - (Gijon) - Asturias");
 
